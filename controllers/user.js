@@ -1,0 +1,7 @@
+class User {
+  find = async () => {
+
+  }
+
+  
+}

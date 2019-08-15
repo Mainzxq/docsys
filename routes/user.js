@@ -20,7 +20,7 @@ userRouter.post("/");
 // 修改其他用户信息，登陆后修改， 受限
 userRouter.patch("/:id");
 
-// 修改自身用户信息，登陆后修改， 自有权限
+// 修改自身用户信息，登陆后修改，不使用uid， 自有权限
 userRouter.patch("/self_info");
 
 // 删除用户，登陆后删除， 最严格的权限控制
