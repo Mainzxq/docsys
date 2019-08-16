@@ -1,5 +1,5 @@
 class User {
-  find = async () => {
+  async find(ctx) {
 
   }
 
