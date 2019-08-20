@@ -78,11 +78,12 @@ const userSchema = new Schema({
     type: [{ type: Schema.Types.ObjectId, ref: "Role" }]
   },
 
+  // 二级管理员，可以管理部门、群组、项目
   isAdmin: {
     type: Boolean,
     default: false
   },
-
+  // 超级管理员
   isSuperAdmin: {
     type: Boolean,
     default: false
@@ -92,6 +93,10 @@ const userSchema = new Schema({
 // 职业生涯对象
 const careerSchema = new Schema({
   user_id: { type: Schema.Types.ObjectId, ref: "User" },
+  __v: {
+    type: Number,
+    select: false
+  },
   company: {
     type: String,
     required: true
@@ -109,6 +114,10 @@ const careerSchema = new Schema({
 // 教育经历 对象
 const educationSchema = new Schema({
   user_id: { type: Schema.Types.ObjectId, ref: "User" },
+  __v: {
+    type: Number,
+    select: false
+  },
   school: {
     type: String,
     required: true
@@ -138,3 +147,33 @@ const educationSchema = new Schema({
     required: true
   }
 });
+
+// 技能
+const skillSchema = new Schema({
+  __v: {
+    type: Number,
+    select: false
+  },
+  skill: {
+    type: String,
+    required: true
+  },
+  types: {
+    type: String
+  },
+  label: {
+    type: String
+  }
+});
+
+const User = model("User", userSchema);
+const Skill = model("Skill", skillSchema);
+const Education = model("Education", educationSchema);
+const Career = model("Career", careerSchema);
+
+module.exports = {
+  User,
+  Skill,
+  Education,
+  Career
+};
