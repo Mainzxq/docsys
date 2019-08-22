@@ -11,9 +11,17 @@ const roleSchema = new Schema({
   scope: {
     type: [{ type: Schema.Types.ObjectId, ref: "Scope" }]
   },
-  source: {
+  resource: {
     type: [{ type: Schema.Types.ObjectId, ref: "Resource" }]
-  }
+  },
+  builders: [
+    {
+      name: String,
+      createtime: Date,
+      modify: String,
+      modifiedby: String
+    }
+  ]
 });
 
 const scopeShcema = new Schema({
@@ -22,6 +30,22 @@ const scopeShcema = new Schema({
     required: true
   },
   field: {
-    type: [{ type: Schema.Types.ObjectId , ref: ""}]
+    type: [{ type: Schema.Types.ObjectId, ref: "" }]
   }
+});
+
+const permassionSchema = new Schema({
+  roleId: {
+    type: Schema.Types.ObjectId,
+    ref: "Roles"
+  },
+  functionId: {
+    type: Schema.Types.ObjectId,
+    ref: "Functions"
+  },
+  modelId: {
+    type: Schema.Types.ObjectId,
+    ref: "Models"
+  },
+
 });
