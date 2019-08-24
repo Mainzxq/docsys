@@ -24,13 +24,37 @@ const roleSchema = new Schema({
   ]
 });
 
+const rescourceShema = new Schema({
+  style: {
+    type: String,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  path: {
+    type: String,
+    required: true
+  }
+});
+
 const scopeShcema = new Schema({
   title: {
     type: String,
     required: true
   },
   field: {
-    type: [{ type: Schema.Types.ObjectId, ref: "" }]
+    type: String,
+    enum: ["personal", "team", "department", "company", "super"],
+    default: ["personal"]
+  }
+});
+
+const feildSchema = new Schema({
+  name: {
+    type: String,
+    required: true
   }
 });
 
@@ -47,5 +71,8 @@ const permassionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Models"
   },
-
+  resourceId: {
+    type: Schema.Types.ObjectId,
+    ref: "Resource"
+  }
 });
